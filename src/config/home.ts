@@ -9,7 +9,7 @@ export type HomeContent = {
   focusItems: string[];
   capabilityTitle: string;
   capabilities: Array<{ key: string; title: string; copy: string }>;
-  stories: Array<{ eyebrow: string; title: string; copy: string; cta: string; url: string; image: string; tone?: "light" | "dark" }>;
+  stories: Array<{ eyebrow: string; title: string; copy: string; cta?: string; url?: string; image: string; tone?: "light" | "dark" }>;
   footerIntro: string;
   filingLabel: string;
   footerColumns: Array<{ title: string; items: Array<{ name: string; url: string }> }>;
@@ -41,8 +41,20 @@ export const HOME_CONTENT: Record<string, HomeContent> = {
       { key: "governance", title: "伦理与安全", copy: "坚守数据伦理与隐私保护，以技术向善为核心准则。" },
     ],
     stories: [
-      { eyebrow: "项目资料", title: "AED 小搜", copy: "产品组资料介绍了 AED 小搜的项目背景与目标。", cta: "阅读项目介绍", url: "/zh/about/pm/", image: "/images/index/homepage-AED.jpg", tone: "light" },
-      { eyebrow: "技术公益", title: "了解我们的方向", copy: "了解团队的技术公益理念，以及公益寻人、公益救援和公益助农等关注方向。", cta: "阅读团队介绍", url: "/zh/about/intro/", image: "/images/index/homepage-bbhj.jpg", tone: "dark" },
+      {
+        eyebrow: "影响故事",
+        title: "让援助更及时、更有尊严",
+        copy: "我们与合作伙伴共建数据系统，在危机发生时帮助团队更快响应，并以数据保护受助者的尊严。",
+        image: "/images/brand/story-relief.jpg",
+        tone: "light",
+      },
+      {
+        eyebrow: "影响故事",
+        title: "用开源与协作，推动气候行动",
+        copy: "我们开发开放工具与数据集，支持社区监测环境变化，让气候行动建立在可靠的信息之上。",
+        image: "/images/brand/story-river.jpg",
+        tone: "dark",
+      },
     ],
     footerIntro: "airdb 是一个技术公益团队，致力于通过数据、软件与协作，支持社会组织与社区解决复杂的社会与环境挑战。",
     filingLabel: "陕ICP备2022002988号-1",
@@ -75,8 +87,20 @@ export const HOME_CONTENT: Record<string, HomeContent> = {
       { key: "governance", title: "Ethics and safety", copy: "Grounding every system in privacy, trust, and responsible technology." },
     ],
     stories: [
-      { eyebrow: "Project documentation", title: "AED search", copy: "Read the product team's existing introduction to the AED search project. The source is in Chinese.", cta: "Read project introduction (Chinese)", url: "/zh/about/pm/", image: "/images/index/homepage-AED.jpg", tone: "light" },
-      { eyebrow: "Technology for good", title: "Our direction", copy: "Explore the team's public-interest technology goals in the original Chinese introduction.", cta: "Read introduction (Chinese)", url: "/zh/about/intro/", image: "/images/index/homepage-bbhj.jpg", tone: "dark" },
+      {
+        eyebrow: "Impact story",
+        title: "Making relief faster and more dignified",
+        copy: "We work with partners to build systems that help teams respond quickly in moments of crisis while protecting the dignity of the people they serve.",
+        image: "/images/brand/story-relief.jpg",
+        tone: "light",
+      },
+      {
+        eyebrow: "Impact story",
+        title: "Open tools for climate action",
+        copy: "We create open technology and shared data so communities can track environmental change and act on trustworthy information.",
+        image: "/images/brand/story-river.jpg",
+        tone: "dark",
+      },
     ],
     footerIntro: "airdb is a technology-for-good team using data, software, and collaboration to help communities solve complex social and environmental challenges.",
     filingLabel: "Shaanxi ICP 2022002988-1",

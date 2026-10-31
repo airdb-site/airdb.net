@@ -23,9 +23,11 @@ test('home and detail share navigation; every CTA has a meaningful target', () =
     assert.equal(nav(home), nav(detail));
     assert.doesNotMatch(home, /type="email"|subscribe-form|social-row|120\+|210\+|900 万|9M\+/);
     for (const story of HOME_CONTENT[lang].stories) {
-      assert.notEqual(story.url, `/${lang}/`);
-      assert.ok(exists(story.url));
-      assert.ok(home.includes(`href="${story.url}"`));
+      if (story.url && story.cta) {
+        assert.notEqual(story.url, `/${lang}/`);
+        assert.ok(exists(story.url));
+        assert.ok(home.includes(`href="${story.url}"`));
+      }
     }
     assert.doesNotMatch(home, /hreflang="cc"/);
     assert.doesNotMatch(home, /hero-family\.jpg|hero-solar\.jpg|bg-mountains\.jpg/, "do not restore composite images with baked-in claims");
@@ -53,4 +55,21 @@ test('reachable content and language fallback are honest', () => {
   assert.match(html('cc/contact'), /public|Public/);
   assert.match(html('zh/about/security'), /Argon2id/);
   assert.doesNotMatch(html('zh/about/security'), /使用非对称加密存储/);
+});
+
+
+test('impact stories retain original presentation without nonexistent article links', () => {
+  const titles = {
+    zh: ['让援助更及时、更有尊严', '用开源与协作，推动气候行动'],
+    cc: ['Making relief faster and more dignified', 'Open tools for climate action'],
+  };
+  for (const lang of ['zh', 'cc']) {
+    const section = html(lang).match(/<section class="story-grid">([\s\S]*?)<\/section>/)?.[1];
+    assert.ok(section, `${lang}: story section exists`);
+    assert.equal((section.match(/<article /g) ?? []).length, 2);
+    for (const title of titles[lang]) assert.ok(section.includes(title));
+    for (const image of ['story-relief.jpg', 'story-river.jpg']) assert.ok(section.includes(`/images/brand/${image}`));
+    assert.ok(section.includes(lang === 'zh' ? '影响故事' : 'Impact story'));
+    assert.doesNotMatch(section, /<a\b|<button\b|href=/, 'stories without full articles have no fake CTA');
+  }
 });

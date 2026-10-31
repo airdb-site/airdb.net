@@ -121,9 +121,11 @@ const iconMap: Record<string, string> = {
               <span>{story.eyebrow}</span>
               <h3>{story.title}</h3>
               <p>{story.copy}</p>
-              <a class:list={["story-link", story.tone === "dark" && "story-link-light"]} href={story.url}>
-                {story.cta}
-              </a>
+              {story.url && story.cta && (
+                <a class:list={["story-link", story.tone === "dark" && "story-link-light"]} href={story.url}>
+                  {story.cta}
+                </a>
+              )}
             </div>
           </article>
         ))}
