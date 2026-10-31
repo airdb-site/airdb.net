@@ -32,7 +32,7 @@ jobs:
           NODE_OPTIONS: --max_old_space_size=4096
         run: |
           make install
-          make build
+          pnpm check
 
       - name: Deploy
         uses: peaceiris/actions-gh-pages@84c30a85c19949d7eee79c4ff27748b70285e453 # v4

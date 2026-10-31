@@ -47,6 +47,7 @@ export type SitePage = {
   html: string;
   body: string;
   isIndex: boolean;
+  isHome: boolean;
   section: string | null;
   data: Record<string, any>;
 };
@@ -210,6 +211,7 @@ const allPages = readMarkdownFiles(CONTENT_DIR)
       html,
       body: processedBody,
       isIndex: path.basename(filePath) === "_index.md" || path.basename(filePath) === "index.md",
+      isHome: routeSegments.length === 1,
       section: routeSegments[1] ?? null,
       data: parsed.data as Record<string, any>,
     } satisfies SitePage;
@@ -229,6 +231,7 @@ export function getPageBySegments(segments: string[]) {
 
 export function getChildren(page: SitePage) {
   return allPages.filter((candidate) => {
+    if (!candidate.body.replace(/<!--[\s\S]*?-->/g, "").trim() || /建设中|Coming soon/i.test(candidate.body)) return false;
     if (candidate.routeSegments.length !== page.routeSegments.length + 1) {
       return false;
     }
@@ -264,32 +267,6 @@ export function getAvailableLanguages() {
   return Array.from(new Set(allPages.map((page) => page.lang))).sort();
 }
 
-const languageRouteMap: Record<string, Record<string, string>> = {
-  zh: {
-    "": "/cc/",
-    about: "/cc/about/",
-    "about/intro": "/cc/about/",
-    "about/teamwork": "/cc/about/",
-    "about/security": "/cc/about/",
-    "about/pm": "/cc/about/",
-    "about/interest": "/cc/about/",
-    "about/todo": "/cc/about/",
-    "about/contribute": "/cc/contact/",
-    news: "/cc/post/",
-    documentation: "/cc/about/",
-    dev: "/cc/contact/",
-  },
-  cc: {
-    "": "/zh/",
-    about: "/zh/about/intro/",
-    contact: "/zh/about/contribute/",
-    post: "/zh/news/",
-    "post/chapter-1": "/zh/about/contribute/",
-    "post/chapter-2": "/zh/news/",
-    "post/chapter-3": "/zh/news/",
-  },
-};
-
 export function getLanguageOptions(page: SitePage, labels: Record<string, string>) {
   const available = getAvailableLanguages().sort((left, right) => {
     if (left === page.lang) {
@@ -308,14 +285,10 @@ export function getLanguageOptions(page: SitePage, labels: Record<string, string
       return { code, label: labels[code] ?? code.toUpperCase(), url: page.routePath, active: true };
     }
 
-    const restSlug = page.routeSegments.slice(1).join("/");
-    const directMatch = getPageBySegments([code, ...page.routeSegments.slice(1)]);
-    const mappedPath = languageRouteMap[page.lang]?.[restSlug] ?? languageRouteMap[page.lang]?.[""];
-
     return {
       code,
-      label: labels[code] ?? code.toUpperCase(),
-      url: directMatch?.routePath ?? mappedPath ?? `/${code}/`,
+      label: `${labels[code] ?? code.toUpperCase()}${page.isHome ? "" : code === "cc" ? " home" : "首页"}`,
+      url: `/${code}/`,
       active: false,
     };
   });

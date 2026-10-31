@@ -1,9 +1,6 @@
 ---
-title: "艾谷三农"
-
-description: "Hello Farmer"
-cascade:
-  featured_image: ''
+title: airdb — Technology for social good
+description: Learn about airdb and explore its public-interest technology work.
 ---
 
-喜农，乐农，助农
+Explore airdb's [Chinese project information](/zh/) or read the [English overview](/cc/about/).

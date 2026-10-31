@@ -42,8 +42,6 @@ const sidebarNav =
     ? menus.docs
     : siblings.map((item) => ({ name: item.title, url: item.routePath }));
 
-const features = Array.isArray(page.data.features) ? page.data.features : [];
-const sections = Array.isArray(page.data.sections) ? page.data.sections : [];
 const iconMap: Record<string, string> = {
   data: '<svg viewBox="0 0 24 24" aria-hidden="true"><ellipse cx="12" cy="5" rx="6.5" ry="2.8"></ellipse><path d="M5.5 5v6c0 1.6 2.9 2.9 6.5 2.9s6.5-1.3 6.5-2.9V5"></path><path d="M5.5 11v6c0 1.6 2.9 2.9 6.5 2.9s6.5-1.3 6.5-2.9v-6"></path></svg>',
   product: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 6L3.5 10.5 8 15"></path><path d="M16 6l4.5 4.5L16 15"></path><path d="M13.5 4L10.5 17"></path></svg>',
@@ -57,20 +55,19 @@ const iconMap: Record<string, string> = {
 <BaseLayout
   title={`${page.title} | airdb`}
   description={page.description}
-  globalNav={page.isIndex ? homeContent.nav : menus.global}
+  globalNav={homeContent.nav}
   sidebarNav={sidebarNav}
   languageOptions={languageOptions}
   currentPath={currentPath}
   htmlLang={languageMeta.htmlLang}
   homePath={languageMeta.homePath}
-  brandTagline={languageMeta.brandTagline}
   footerTitle={languageMeta.footerTitle}
   footerCopy={languageMeta.footerCopy}
   copyrightLabel={languageMeta.copyrightLabel}
   filingLabel={languageMeta.filingLabel}
   filingUrl={languageMeta.filingUrl}
 >
-  {page.isIndex ? (
+  {page.isHome ? (
     <>
       <section class="home-hero home-hero-reference">
         <div class="hero-copy">
@@ -86,16 +83,10 @@ const iconMap: Record<string, string> = {
           </div>
         </div>
 
-        <div class="hero-collage">
-          <article class="hero-photo hero-photo-main">
-            <img src="/images/brand/hero-family.jpg" alt="" loading="eager" />
-          </article>
-          <article class="hero-photo hero-photo-device">
+        <div class="hero-collage hero-collage-clean">
+          <div class="hero-photo hero-photo-main">
             <img src="/images/brand/hero-device.jpg" alt="" loading="eager" />
-          </article>
-          <article class="hero-photo hero-photo-solar">
-            <img src="/images/brand/hero-solar.jpg" alt="" loading="eager" />
-          </article>
+          </div>
           <div class="hero-focus-card">
             <h2>{homeContent.focusTitle}</h2>
             <ul>
@@ -104,24 +95,6 @@ const iconMap: Record<string, string> = {
               ))}
             </ul>
           </div>
-          <div class="hero-impact-card">
-            <div class="impact-heading">
-              <span>{homeContent.impactTitle}</span>
-              <small>{homeContent.impactYear}</small>
-            </div>
-            <div class="impact-stats">
-              {homeContent.stats.map((item) => (
-                <div>
-                  <strong>{item.value}</strong>
-                  <span>{item.label}</span>
-                </div>
-              ))}
-            </div>
-          </div>
-          <div class="hero-ambient hero-ambient-left"></div>
-          <div class="hero-ambient hero-ambient-right"></div>
-          <div class="hero-dotted-grid"></div>
-          <img class="hero-mountain" src="/images/brand/bg-mountains.jpg" alt="" loading="eager" />
         </div>
       </section>
 
@@ -148,7 +121,7 @@ const iconMap: Record<string, string> = {
               <span>{story.eyebrow}</span>
               <h3>{story.title}</h3>
               <p>{story.copy}</p>
-              <a class:list={["story-link", story.tone === "dark" && "story-link-light"]} href={languageMeta.homePath}>
+              <a class:list={["story-link", story.tone === "dark" && "story-link-light"]} href={story.url}>
                 {story.cta}
               </a>
             </div>
@@ -167,26 +140,11 @@ const iconMap: Record<string, string> = {
             <h3>{column.title}</h3>
             <ul>
               {column.items.map((item) => (
-                <li>{item}</li>
+                <li><a href={item.url}>{item.name}</a></li>
               ))}
             </ul>
           </div>
         ))}
-        <div class="footer-subscribe">
-          <h3>{homeContent.subscribeTitle}</h3>
-          <p>{homeContent.subscribeCopy}</p>
-          <div class="subscribe-form">
-            <input type="email" placeholder={homeContent.subscribePlaceholder} />
-            <button type="button">{homeContent.subscribeButton}</button>
-          </div>
-          <div class="social-row">
-            <span>in</span>
-            <span>X</span>
-            <span>◎</span>
-            <span>▶</span>
-            <span>✉</span>
-          </div>
-        </div>
       </section>
     </>
   ) : (

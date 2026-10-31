@@ -24,7 +24,7 @@ The `block` keyword allows you to define the outer shell of your pages' one or m
 
 ## Base Template Lookup Order
 
-The [lookup order][lookup] for base templates is as follows:
+The lookup order for base templates is as follows:
 
 1. `/layouts/section/<TYPE>-baseof.html`
 2. `/themes/<THEME>/layouts/section/<TYPE>-baseof.html`
@@ -41,7 +41,7 @@ Variables are denoted by capitalized text set within `<>`. Note that Hugo's defa
 
 ### Example Base Template Lookup Order
 
-As an example, let's assume your site is using a theme called "mytheme" when rendering the section list for a `posts` section. Hugo picks `layout/section/posts.html` as the template for [rendering the section][]. The `{{define}}` block in this template tells Hugo that the template is an extension of a base template.
+As an example, let's assume your site is using a theme called "mytheme" when rendering the section list for a `posts` section. Hugo picks `layout/section/posts.html` as the template for rendering the section. The `{{define}}` block in this template tells Hugo that the template is an extension of a base template.
 
 Here is the lookup order for the `posts` base template:
 
@@ -84,7 +84,7 @@ The following defines a simple base template at `_default/baseof.html`. As a def
 
 ## Override the Base Template
 
-From the above base template, you can define a [default list template][hugolists]. The default list template will inherit all of the code defined above and can then implement its own `"main"` block from:
+From the above base template, you can define a default list template. The default list template will inherit all of the code defined above and can then implement its own `"main"` block from:
 
 {{< code file="layouts/_default/list.html" download="list.html" >}}
 {{ define "main" }}
@@ -112,7 +112,7 @@ Code that you put outside the block definitions *can* break your layout. This ev
 [See this thread from the Hugo discussion forums.](https://discourse.gohugo.io/t/baseof-html-block-templates-and-list-types-results-in-empty-pages/5612/6)
 {{% /warning %}}
 
-The following shows how you can override both the `"main"` and `"title"` block areas from the base template with code unique to your [default single page template][singletemplate]:
+The following shows how you can override both the `"main"` and `"title"` block areas from the base template with code unique to your default single page template:
 
 {{< code file="layouts/_default/single.html" download="single.html" >}}
 {{ define "title" }}
@@ -124,8 +124,3 @@ The following shows how you can override both the `"main"` and `"title"` block a
   {{ .Content }}
 {{ end }}
 {{< /code >}}
-
-[hugolists]: /templates/lists
-[lookup]: /templates/lookup-order/
-[rendering the section]: /templates/section-templates/
-[singletemplate]: /templates/single-page-templates/

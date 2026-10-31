@@ -1,90 +1,32 @@
-
-# Chinese menus
-
 [[docs]]
   name = "技术公益"
-  weight = 1
-  url = "/zh/about/intro"
+  weight = 0
+  url = "/zh/about/intro/"
 
 [[docs]]
   name = "团队协作"
-  weight = 5
-  identifier = "getting-started"
-  url = "/zh/about/teamwork"
-
-[[docs]]
-  name = "公益成果"
-  weight = 15
-  identifier = "themes"
-  url = "/zh/about/todo"
-
-[[docs]]
-  name = "数据安全"
-  weight = 15
-  identifier = "themes"
-  post = "break"
-  url = "/zh/about/security"
-
-[[docs]]
-  name = "组织架构"
-  weight = 20
-  url = "/zh/about/todo"
+  weight = 1
+  url = "/zh/about/teamwork/"
 
 [[docs]]
   name = "产品组"
-  weight = 25
-  url = "/zh/about/pm"
+  weight = 2
+  url = "/zh/about/pm/"
 
 [[docs]]
-  name = "设计组"
-  weight = 26
-  url = "/zh/about/todo"
-
-[[docs]]
-  name = "开发组"
-  weight = 27
-  url = "/zh/about/todo"
-
-[[docs]]
-  name = "运维组"
-  weight = 29
-  url = "/zh/about/todo"
-
-[[docs]]
-  name = "运营组"
-  weight = 30
-  url = "/zh/about/todo"
-
-[[docs]]
-  name = "后勤组"
-  weight = 35
-  url = "/zh/about/todo"
+  name = "安全建议"
+  weight = 3
+  url = "/zh/about/security/"
 
 [[docs]]
   name = "兴趣组"
-  weight = 40
-  post = "break"
-  url = "/zh/about/interest"
+  weight = 4
+  url = "/zh/about/interest/"
 
 [[docs]]
-  name = "团队文化"
-  weight = 70
-  identifier = "tools"
-  url = "/zh/about/todo"
-
-[[docs]]
-  name = "团队理念"
-  weight = 80
-  identifier = "hosting-and-deployment"
-  url = "/zh/about/todo"
-
-[[docs]]
-  name = "加入我们"
-  weight = 100
-  post = "break"
-  identifier = "contribute"
-  url = "/zh/about/todo"
-
+  name = "参与贡献"
+  weight = 5
+  url = "/zh/about/contribute/"
 [[global]]
   name = "公益新闻"
   weight = 1

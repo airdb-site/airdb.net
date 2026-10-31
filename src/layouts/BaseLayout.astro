@@ -16,7 +16,6 @@ const {
   currentPath = "/",
   htmlLang = "zh-CN",
   homePath = "/zh/",
-  brandTagline = "",
   footerTitle = "",
   footerCopy = "",
   copyrightLabel = "",
@@ -31,7 +30,6 @@ const {
   currentPath?: string;
   htmlLang?: string;
   homePath?: string;
-  brandTagline?: string;
   footerTitle?: string;
   footerCopy?: string;
   copyrightLabel?: string;
@@ -85,7 +83,7 @@ function isActive(url?: string) {
               {languageOptions.map((item, index) => (
                 <>
                   {index > 0 && <span class="language-divider">/</span>}
-                  <a class:list={["language-pill", item.active && "active"]} href={item.url} hreflang={item.code}>
+                  <a class:list={["language-pill", item.active && "active"]} href={item.url} hreflang={item.code === "cc" ? "en" : "zh-CN"}>
                     {item.label}
                   </a>
                 </>
@@ -100,7 +98,7 @@ function isActive(url?: string) {
       {sidebarNav.length > 0 && (
         <aside class="sidebar">
           <div class="sidebar-panel">
-            <p class="sidebar-label">目录</p>
+            <p class="sidebar-label">{htmlLang === "en" ? "Contents" : "目录"}</p>
             <nav aria-label="Section">
               {sidebarNav.map((item) => (
                 <a class:list={[isActive(item.url) && "active"]} href={item.url}>

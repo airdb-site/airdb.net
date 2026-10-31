@@ -187,14 +187,15 @@ main.shell {
 
 .hero-copy {
   padding-top: 56px;
-  padding-left: 42px;
+  padding-left: 0;
 }
 
 .home-hero h1 {
   margin: 0;
   color: var(--teal);
   white-space: pre-line;
-  font-size: clamp(68px, 5.2vw, 79px);
+  font-size: clamp(40px, 4.2vw, 62px);
+  text-wrap: balance;
   line-height: 1.22;
   letter-spacing: -0.055em;
 }
@@ -209,7 +210,8 @@ main.shell {
 
 .hero-actions {
   display: flex;
-  gap: 24px;
+  gap: 16px;
+  flex-wrap: wrap;
   margin-top: 28px;
 }
 
@@ -943,4 +945,25 @@ main.shell {
   .site-footer {
     padding: 18px 0 24px;
   }
+}
+
+/* Use one existing clean photo; the previous composite assets contained baked-in
+   impact claims and duplicate UI text, which cannot be removed with CSS. */
+.hero-collage-clean {
+  min-height: 0;
+  display: grid;
+  align-content: center;
+  gap: 20px;
+}
+.hero-collage-clean .hero-photo-main,
+.hero-collage-clean .hero-focus-card {
+  position: static;
+  width: 100%;
+  height: auto;
+}
+.hero-collage-clean .hero-photo-main { aspect-ratio: 4 / 3; }
+.hero-collage-clean .hero-focus-card ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px 24px;
 }

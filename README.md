@@ -32,3 +32,16 @@ pnpm build
 - 兼容站点中少量 Hugo shortcode，例如 `figure`、`youtube`、`code`、`warning`
 - 更新 Netlify 与 Makefile，使部署和本地开发不再依赖 Hugo
 - 采用 `pnpm` 作为默认包管理器
+
+## 回归检查
+
+使用 Node.js 26（与 CI 一致，测试直接加载 TypeScript 源码）和仓库声明的 pnpm 版本：
+
+```bash
+pnpm install --frozen-lockfile
+pnpm check
+```
+
+`pnpm check` 依次执行 Astro 类型检查、静态构建和 Node 测试。测试覆盖栏目/首页区分、真实 CTA、统一导航、所有生成页面的本地链接与资源、正文非空和语言回退。`pnpm test` 需要先生成最新 `dist/`，不要用旧构建结果判断新改动。
+
+PR 检查只验证、不部署；推送或合并到 main 会触发现有自动部署工作流，该工作流会在发布前运行同样的检查。外部链接的实时可用性和视觉布局仍需人工浏览器验证。

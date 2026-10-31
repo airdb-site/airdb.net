@@ -1,14 +1,14 @@
 ---
-title: 联系我们
-featured_image: ''
-omit_header_text: true
-description: We'd love to hear from you
-type: page
-menu: main
-
+title: Contact and website feedback
+description: Public feedback for the airdb website.
 ---
 
-<!-- 客服二维码图片从未入库，线上一直是张 404 的破图。
-     拿到真实二维码后：把图片存为 static/images/qrcode_wxkf.png，
-     然后在此处用 figure shortcode 引用它（src 指向该图，
-     title 写"微信扫码，即可联系官方客服"）。 -->
+## Website feedback
+
+For broken links, page errors, or suggestions about this website, use the [website repository's GitHub Issues](https://github.com/airdb-site/airdb.net/issues). A GitHub account is needed to post.
+
+This is a public website feedback channel, not private support, emergency assistance, or a donation service. Do not post passwords, access tokens, personal information, beneficiary records, or details of undisclosed security vulnerabilities. This website does not currently list a verified private contact channel.
+
+## Learn about participating
+
+Read about [team collaboration (Chinese)](/zh/about/teamwork/) and [public-interest technology projects (Chinese)](/zh/about/pm/). Current opportunities and project needs must be confirmed with project maintainers; these pages are not a promise of open roles.
